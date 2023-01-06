@@ -33,7 +33,7 @@ def connection():
     # чтение страницы ОПТ, а именно строк ТТН(его присудствие Код/размер	ФИО / НП / Г. / Номер	Статус	Оплата\Наша цена
     purchasesOPT = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
-        range="ОПТ!A2499:H3100",
+        range="ОПТ!",
         majorDimension='ROWS'
     ).execute()
 
@@ -41,7 +41,7 @@ def connection():
     # Оплата\Наша цена
     purchasesOPT_NAL = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
-        range="ОПТ Наложки!A3100:I3500",
+        range="ОПТ Наложки!",
         majorDimension='ROWS'
     ).execute()
 
@@ -49,14 +49,14 @@ def connection():
     # чтение страницы розница, а именно строк ТТН(его присудствие Код/размер	ФИО / НП / Г. / Номер	Статус	Оплата\Наша цена
     purchases_roz = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
-        range="Розница!A1200:J1400",
+        range="Розница!",
         majorDimension='ROWS'
     ).execute()
 
     # чтениe размера коробок
     boxparams = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
-        range="коробки!A2:B900",
+        range="коробки!",
         majorDimension='ROWS'
     ).execute()
 
@@ -90,7 +90,7 @@ def get_sizebox(vendcode):  # если не работает то дело в bo
                 width = param[2]
                 return [str(hight), str(lenth), str(width)]
     except IndexError:
-        print(vendcode + ' RINA NE VNESLA')
+        print(vendcode + ' NE VNESLA')
 
 
 # отправляем данные на заполнение страницы

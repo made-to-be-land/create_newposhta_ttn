@@ -25,13 +25,13 @@ def new_connection():
     # sheet = client.open("NEW CRM GINGER.WEBSTORE").worksheet("Розница")
     # purchases_roz = sheet.get_all_values()
 
-    sheet = client.open("NEW CRM GINGER.WEBSTORE").worksheet("коробки")
+    sheet = client.open("NAME").worksheet("коробки")
     boxparams = sheet.get_all_values()
 
     return boxparams
     # return purchasesOPT, purchasesOPT_NAL, purchases_roz, boxparams
 
-
+#
 def binary_search(boxparams, vencode):
     low = 0
     high = len(boxparams) - 1
@@ -52,7 +52,7 @@ def get_sizebox(vendcode):  # если не работает то дело в bo
     try:
         for size in infosize:
             if vendcode in size:
-                param = size[1]  # параметры коробки
+                param = size[1]  # параметwры коробки
                 if 'x' in param:
                     param = param.split('x')  # это "хэ" и "икс"
                 elif 'х' in param:
@@ -63,7 +63,7 @@ def get_sizebox(vendcode):  # если не работает то дело в bo
                 width = param[2]
                 return [str(hight), str(lenth), str(width)]
     except IndexError:
-        print(vendcode + ' RINA NE VNESLA')
+        print(vendcode + 'NE VNESLA')
 
 
 # hight, lenth, width = get_sizebox(vendcode[0][0:4])
